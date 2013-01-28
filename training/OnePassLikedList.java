@@ -10,6 +10,7 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.Map;
 import java.util.Map.Entry;
 
+
 public class OnePassLikedList {
     
     public Entry<String, Entry> makeLinkedList(int count) {
@@ -22,7 +23,7 @@ public class OnePassLikedList {
         return root;
     }
 
-    public String doit() {
+    public String getMiddle() {
         Entry<String, Entry> node = makeLinkedList(100);
         Entry<String, Entry> middleNode = node;
         boolean skip = true;
@@ -36,7 +37,7 @@ public class OnePassLikedList {
         return middleNode.getKey();
     }
     
-    public String doitLag(int lag) {
+    public String getByLag(int lag) {
         Entry<String, Entry> node = makeLinkedList(100);
         Entry<String, Entry> middleNode = node;
         int curLag = 0;
@@ -53,11 +54,13 @@ public class OnePassLikedList {
     
     @Test
     public void testMiddle() {
-        Assert.assertEquals("50", doit());
+        // one-pass calculation of the middle item
+        Assert.assertEquals("50", getMiddle());
     }
 
     @Test
     public void testLag() {
-        Assert.assertEquals("70", doitLag(30));
+        // one-pass calculation of the middle item
+        Assert.assertEquals("70", getByLag(30));
     }
 }
