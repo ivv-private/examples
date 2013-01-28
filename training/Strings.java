@@ -20,6 +20,10 @@ public class Strings {
         return sb.toString();
     }
 
+    public String reverse(String s) {
+        return s.length() == 1 ? s : reverse(s.substring(1)) + s.substring(0, 1);
+    }
+
     public void swap(char[] s, int from, int to) {
         char buf = s[to];
         s[to] = s[from];
@@ -45,6 +49,10 @@ public class Strings {
         Assert.assertEquals("nbdy", replace("nobody", 'o'));
     }
  
+    @Test
+    public void reverseTest() {
+        Assert.assertEquals("0987654321", reverse("1234567890"));
+    }
 
     @Test
     public void rpermTest() {
