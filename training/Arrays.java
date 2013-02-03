@@ -29,6 +29,21 @@ public class Arrays {
         System.out.println("");
     }
 
+    public boolean isSorted(int[] a) {
+        for (int i = 1; i < a.length; i++) {
+            if (a[i-1] > a[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void swap(int[] a, int from, int to) {
+        int buf = a[to];
+        a[to] = a[from];
+        a[from] = buf;
+    }
+
     public int[] quickSort(int[] a, int low, int high) {
         int p = a[low + ((high - low) / 2)],
             i = low, 
@@ -57,11 +72,6 @@ public class Arrays {
             quickSort(a, i, high);
         };
         return a;
-    }
-    public void swap(int[] a, int from, int to) {
-        int buf = a[to];
-        a[to] = a[from];
-        a[from] = buf;
     }
 
     public int[] bubbleSort(int[] a) {
@@ -117,15 +127,6 @@ public class Arrays {
             i++;
         }
         return a;
-    }
-
-    public boolean isSorted(int[] a) {
-        for (int i = 1; i < a.length; i++) {
-            if (a[i-1] > a[i]) {
-                return false;
-            }
-        }
-        return true;
     }
 
     @Test
