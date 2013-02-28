@@ -3,6 +3,7 @@
 /* eval: (setq compile-command (format "export CLASSPATH=%s:%s" temporary-file-directory junit-jar)) */
 /* eval: (setq compile-command (format "%s && javac -d %s %s" compile-command temporary-file-directory (buffer-name))) */
 /* eval: (setq compile-command (format "%s && java org.junit.runner.JUnitCore %s" compile-command (file-name-sans-extension (buffer-name)))) */
+/* eval: (setq after-save-hook nil) */
 /* End: */
 import java.util.AbstractMap;
 import java.util.AbstractMap.SimpleEntry;
@@ -13,6 +14,28 @@ import org.junit.*;
 
 
 public class OnePassLikedList {
+
+
+    public static class Node {
+        String data;
+        Node next;
+    }
+
+    public Node reverse(Node list) {
+        if (list == null) {
+            return null;
+        }
+ 
+        if (list.next == null) {
+            return list;
+        }
+ 
+        Node next = list.next;
+        list.next = null;
+        Node rest = reverse(next); 
+        next.next = list;
+        return rest;
+    }
 
     public static class Cell {
         String data;
@@ -89,6 +112,9 @@ public class OnePassLikedList {
         return fast == slow ? fast : null;
     }
 
+
+
+
     public boolean hasLoop(Cell list) {
         Cell slow = list,
             fast1 = list,
@@ -160,11 +186,9 @@ public class OnePassLikedList {
 
     @Test
     public void testReverse() {
-        Cell list = construct(6);
-        // Assert.assertEquals("100", reverse(list).data);
-        print(list);
-        System.out.println("doh");
-        print(reverse(list));
+        Cell list = construct(100);
+        Assert.assertEquals("1", list.data);
+        Assert.assertEquals("100", reverse(list).data);
     }
 
 
